@@ -11,13 +11,13 @@ const Todos = () => {
     // 2. Define a function to get todos
     const getTodos = async () => {
         // use axios to get todos
-        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/todos`);
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/todos?limit=0`);
         console.table(response.data);
         // Update todos state
         setTodos(response.data);
     }
 
-    // 3. call function with useEfeect
+    // 3. call function with useEfeect      
     useEffect(() => {
         getTodos();
     });
@@ -29,7 +29,7 @@ const Todos = () => {
 
 
                 {todos.map((todo) => {
-                    return <TodoTile title={todos.title} key={todo.id} />
+                    return <TodoTile title={todos.title} key={todo.id} icon={todo.icon} />
                 })}
             </div>
             <Link to={'/add'}>Add Todo</Link>
